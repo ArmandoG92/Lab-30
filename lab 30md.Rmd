@@ -1,0 +1,48 @@
+---
+title: "lab 39 md"
+output:
+  pdf_document: default
+  html_document: default
+date: "2025-10-07"
+---
+
+cargar paquetes 
+```{r}
+library(data.table)
+
+```
+
+identificar la ruta de los archivos a combinar 
+choose.files()
+
+crear las variables con los archivos 
+```{r}
+green.products <- read.csv("C:\\Users\\arm_v\\Downloads\\green products.csv")
+all.products <- read.csv("C:\\Users\\arm_v\\Downloads\\COMPLETE_YEARS_PRODUCTS.csv")
+
+```
+
+#leer variables como tablas
+```{r}
+green.products <- as.data.table(green.products)
+all.products <- as.data.table(all.products)
+
+```
+
+
+
+#hacer el merge
+```{r}
+merge.allproducts= merge (all.products, green.products, by= "product_code")
+
+merge.full= merge (all.products, green.products, by= "product_code", all.x = T)
+
+```
+
+
+Exportar el resultado
+```{r}
+write.csv(merge.full, file= "merge.full.csv")
+
+```
+
